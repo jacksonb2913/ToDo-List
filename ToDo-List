@@ -1,0 +1,75 @@
+<head>
+<style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville');
+h1{
+  font-size: 60px;
+  font-family: 'Indie Flower', cursive;
+
+}
+.msgBox{
+  text-align:center;
+  margin-top:50px; 
+ 
+}
+.list, .input{
+ font-size: 24px;
+  font-family: 'Libre Baskerville', serif;
+}
+input{
+    text-align:center;
+font-size:24px;
+}
+</style>
+</head>
+<body>
+<center>     
+<h1>To-Do List</h1>  
+<label> Add Item to List </label>
+<input id = 'todo' class = "input" placeholder = 'Ex: Get Milk'type = 'text'></input>
+<button onclick = "add()" class = 'btn'> Add to List</button>  
+<div class = "above" id = "above"></div>
+</body>
+<script>
+  document.getElementById("todo").focus();
+
+
+
+function add(){
+
+  if(document.getElementById('todo').value === ""){
+    return 
+     //alert('Please Enter Something To-Do');
+     }else{
+  var html = document.querySelector('html');
+
+var panel = document.createElement('div');
+panel.setAttribute('class', 'msgBox');
+html.appendChild(panel);
+
+var check = document.createElement('checkbox');
+panel.appendChild(check);  
+       
+var msg = document.createElement('p');
+msg.textContent = document.getElementById('todo').value;
+msg.setAttribute('class', 'list');
+panel.appendChild(msg);
+     
+    document.getElementById('todo').value = "";   
+       
+var closeBtn = document.createElement('button');
+closeBtn.textContent = 'Remove From List';
+closeBtn.setAttribute('class', 'btn');
+panel.appendChild(closeBtn);
+
+closeBtn.onclick = function() {
+  panel.parentNode.removeChild(panel);
+  
+  
+}}}
+document.getElementById('todo').onkeydown = function(e){
+   if(e.keyCode == 13){
+     add();
+   }
+};
+</script>
